@@ -410,6 +410,7 @@ def performDetect(imagePath="data/dog.jpg", thresh= 0.25, configPath = "./cfg/yo
                     [xCoord + xEntent, yCoord + yExtent],
                     [xCoord + xEntent, yCoord]
                 ]
+                print(boundingBox)
                 # Wiggle it around to make a 3px border
                 rr, cc = draw.polygon_perimeter([x[1] for x in boundingBox], [x[0] for x in boundingBox], shape= shape)
                 rr2, cc2 = draw.polygon_perimeter([x[1] + 1 for x in boundingBox], [x[0] for x in boundingBox], shape= shape)
