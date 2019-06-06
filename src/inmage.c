@@ -304,7 +304,7 @@ int compare_by_probs(const void *a_ptr, const void *b_ptr) {
     return delta < 0 ? -1 : delta > 0 ? 1 : 0;
 }
 
-void draw_detections_v3(image im, detection *dets, int num, float thresh, char **names, image **alphabet, int classes, int ext_output)
+void draw_detections_v3(image im, detection *dets, int num, float thresh, char **names, image **alphabet, int classes, int ext_output, char *filename)
 {
     static int frame_id = 0;
     frame_id++;
@@ -376,8 +376,8 @@ void draw_detections_v3(image im, detection *dets, int num, float thresh, char *
             int b_y_center = (top + bot) / 2;
             int b_width = right - left;
             int b_height = bot - top;
+     
             
-            char labelstr[1024];
             sprintf(labelstr, "%d x %d - w: %d, h: %d", b_x_center, b_y_center, b_width, b_height);
 
             // you should create directory: result_img
@@ -393,7 +393,7 @@ void draw_detections_v3(image im, detection *dets, int num, float thresh, char *
             img_id++;
             char image_name[1024];
             int best_class_id = selected_detections[i].best_class;
-            sprintf(image_name, "result_img/img_%d_%d_%d_%s", frame_id, img_id, best_class_id, names[best_class_id]);
+            sprintf(image_name, "result_img/img_%s.jpg", filename); // frame_id, img_id, best_class_id, names[best_class_id]);
             save_image(cropped_im, image_name);
             free_image(cropped_im);
 
